@@ -1,0 +1,27 @@
+<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <TargetFramework>net5.0</TargetFramework>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <PackageReference Include="AutoMapper" Version="10.1.1" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\AppStarter.Data\AppStarter.Data.csproj" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Reference Include="Console.Lib">
+      <HintPath>..\..\Console\Console.Lib\bin\Release\net5.0\Console.Lib.dll</HintPath>
+    </Reference>
+    <Reference Include="Core">
+      <HintPath>..\..\Core\Core.Lib\bin\Release\net5.0\Core.dll</HintPath>
+    </Reference>
+    <Reference Include="Core.Lib">
+      <HintPath>..\..\Core\Core.Lib\bin\Release\net5.0\Core.Lib.dll</HintPath>
+    </Reference>
+  </ItemGroup>
+
+</Project>
