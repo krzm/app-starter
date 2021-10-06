@@ -2,6 +2,8 @@ using AppStarter.Data.Model;
 using AppStarter.Data.Repository;
 using AppStarter.Lib;
 using AppStarter.Lib.Commands.Insert;
+using AppStarter.Lib.Commands.Read;
+using AppStarter.Lib.Commands.Update;
 using AppStarter.Lib.Model;
 using AutoMapper;
 using Console.Lib;
@@ -70,9 +72,9 @@ namespace AppStarter.ConsoleApp
 					, new InjectionConstructor(new object[] {
 						new string[]
 						{
-							//""
-							//,
-							"insert"
+							""
+							, "insert"
+							, "update"
 						}
 						, new string[]
 						{
@@ -87,7 +89,9 @@ namespace AppStarter.ConsoleApp
 				.RegisterType<ICommand, AppStartCommand>("start");
 
 			Container
-				.RegisterType<ICommand, AppInfoInsertCommand>(Commands.Insert(nameof(AppInfo)));
+				.RegisterType<ICommand, AppInfoInsertCommand>(Commands.Insert(nameof(AppInfo)))
+				.RegisterType<ICommand, AppInfoReadCommand>(Commands.Read(nameof(AppInfo)))
+				.RegisterType<ICommand, AppInfoUpdateCommand>(Commands.Update(nameof(AppInfo)));
 		}
 	}
 }
