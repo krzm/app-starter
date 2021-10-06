@@ -29,7 +29,7 @@ namespace AppStarter.Lib.Commands.Update
 			var id = int.Parse(ConsoleIO.ReadLine());
 			var appInfo = AppStarterUnit.AppInfo.GetByID(id);
 
-			ConsoleIO.WriteLine($"Select property number. 1-{name}, 2-{description}");
+			ConsoleIO.WriteLine($"Select property number. 1-{name}, 2-{description}, 3-{path}");
 			var nr = int.Parse(ConsoleIO.ReadLine());
 			if (nr == 1)
 				appInfo.Name = TextReader.Read(name);
