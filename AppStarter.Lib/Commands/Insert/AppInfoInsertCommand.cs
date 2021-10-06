@@ -1,9 +1,9 @@
-﻿using AppsStarter.Lib.Commands.Base;
-using AppStarter.Data.Model;
+﻿using AppStarter.Data.Model;
 using AppStarter.Data.Repository;
+using AppStarter.Lib.Commands.Base;
 using Console.Lib;
 
-namespace AppsStarter.Lib.Commands.Insert
+namespace AppStarter.Lib.Commands.Insert
 {
 	public class AppInfoInsertCommand : AppStarterReaderCommand<AppInfo>
 	{

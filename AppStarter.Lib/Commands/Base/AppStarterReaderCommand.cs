@@ -1,7 +1,7 @@
 ﻿using AppStarter.Data.Repository;
 using Console.Lib;
 
-namespace AppsStarter.Lib.Commands.Base
+namespace AppStarter.Lib.Commands.Base
 {
 	public abstract class AppStarterReaderCommand<TEntity> : DataReaderCommand<TEntity>
 	{

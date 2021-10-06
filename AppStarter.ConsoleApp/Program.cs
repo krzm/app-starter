@@ -1,12 +1,12 @@
 ﻿using Console.Lib;
 
-namespace AppsStarter.ConsoleApp
+namespace AppStarter.ConsoleApp
 {
 	class Program
 	{
 		static void Main(string[] args)
 		{
-			IConsoleBootstraper booter = new AppsStarterBootstraper();
+			IConsoleBootstraper booter = new AppStarterBootstraper();
 			booter.Boot(args);
 		}
 	}

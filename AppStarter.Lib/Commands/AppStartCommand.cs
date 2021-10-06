@@ -5,7 +5,7 @@ using Core;
 using System;
 using System.Linq;
 
-namespace AppsStarter.Lib
+namespace AppStarter.Lib
 {
 	public class AppStartCommand : IOCommand
 	{

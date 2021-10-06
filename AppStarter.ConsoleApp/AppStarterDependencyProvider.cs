@@ -1,24 +1,23 @@
-using AppsStarter.Lib;
-using AppsStarter.Lib.Commands.Insert;
-using AppsStarter.Lib.Model;
 using AppStarter.Data.Model;
 using AppStarter.Data.Repository;
+using AppStarter.Lib;
+using AppStarter.Lib.Commands.Insert;
+using AppStarter.Lib.Model;
 using AutoMapper;
 using Console.Lib;
 using Core;
-using Core.Console;
 using Core.Lib.Utility;
 using System.Windows.Input;
 using Unity;
 using Unity.Injection;
 
-namespace AppsStarter.ConsoleApp
+namespace AppStarter.ConsoleApp
 {
-	public class AppsStarterDependencyProvider : ConsoleAppDependencyProvider
+	public class AppStarterDependencyProvider : ConsoleAppDependencyProvider
 	{
 		public override string AppName => "AppsStarter";
 
-		public AppsStarterDependencyProvider(IUnityContainer container) : base(container)
+		public AppStarterDependencyProvider(IUnityContainer container) : base(container)
 		{
 		}
 

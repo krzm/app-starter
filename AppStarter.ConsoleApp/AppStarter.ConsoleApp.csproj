@@ -1,8 +1,9 @@
-<Project Sdk="Microsoft.NET.Sdk">
+﻿<Project Sdk="Microsoft.NET.Sdk">
 
   <PropertyGroup>
     <OutputType>Exe</OutputType>
     <TargetFramework>net5.0</TargetFramework>
+    <StartupObject>AppStarter.ConsoleApp.Program</StartupObject>
   </PropertyGroup>
 
   <ItemGroup>
@@ -16,7 +17,7 @@
   </ItemGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\AppsStarter.Lib\AppsStarter.Lib.csproj" />
+    <ProjectReference Include="..\AppStarter.Lib\AppStarter.Lib.csproj" />
     <ProjectReference Include="..\AppStarter.Data\AppStarter.Data.csproj" />
   </ItemGroup>
 

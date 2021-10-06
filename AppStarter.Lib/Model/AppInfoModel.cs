@@ -1,4 +1,4 @@
-﻿namespace AppsStarter.Lib.Model
+﻿namespace AppStarter.Lib.Model
 {
 	public class AppInfoModel
 	{
