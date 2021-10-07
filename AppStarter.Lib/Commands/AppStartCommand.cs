@@ -56,7 +56,7 @@ namespace AppStarter.Lib
 			if(appInfo != null)
 			{
 				ConsoleIO.WriteLine($"Start process : {appInfo.Name} in path {appInfo.Path}");
-				if (appParams.Length > 0)
+				if (appParams?.Length > 0)
 				{
 					foreach (var param in appParams)
 					{
