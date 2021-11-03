@@ -1,34 +1,33 @@
 ﻿using AppStarter.Data.Model;
 using AppStarter.Data.Repository;
-using AppStarter.Lib.Commands.Base;
 using Console.Lib;
+using System.Collections.Generic;
 
 namespace AppStarter.Lib.Commands.Insert
 {
-	public class AppInfoInsertCommand : AppStarterReaderCommand<AppInfo>
+	public class AppInfoInsertCommand : DataCommand<AppInfo>
 	{
+		private readonly IAppStarterUnitOfWork unitOfWork;
+		private readonly IReader<string> requiredTextReader;
+
 		public AppInfoInsertCommand(
 			IAppStarterUnitOfWork unitOfWork
-			, IConsoleIO consoleIO
-			, IReader<string> textReader) : base(unitOfWork, consoleIO, textReader)
+			, List<IReader<string>> textReaders)
 		{
-		}
-
-		public override bool CanExecute(object parameter)
-		{
-			return true;
+			this.unitOfWork = unitOfWork;
+			requiredTextReader = textReaders[0];
 		}
 
 		public override void Execute(object parameter)
 		{
-			AppStarterUnit.AppInfo.Insert(
+			unitOfWork.AppInfo.Insert(
 				new AppInfo
 				{
-					Name = TextReader.Read(nameof(AppInfo.Name))
-					, Description = TextReader.Read(nameof(AppInfo.Description))
-					, Path = TextReader.Read(nameof(AppInfo.Path))
+					Name = requiredTextReader.Read(new ReadConfig(50, nameof(AppInfo.Name)))
+					, Description = requiredTextReader.Read(new ReadConfig(250, nameof(AppInfo.Description)))
+					, Path = requiredTextReader.Read(new ReadConfig(250, nameof(AppInfo.Path)))
 				});
-			AppStarterUnit.Save();
+			unitOfWork.Save();
 		}
 	}
 }

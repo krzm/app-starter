@@ -1,32 +1,32 @@
 ﻿using AppStarter.Data.Model;
 using AppStarter.Data.Repository;
-using AppStarter.Lib.Commands.Base;
 using Console.Lib;
+using System.Linq;
 
-namespace AppStarter.Lib.Commands.Read
+namespace AppStarter.Lib.Commands
 {
-	public class AppInfoReadCommand : AppStarterIOCommand
+	public class AppInfoReadCommand : DataCommand<AppInfo>
 	{
+		private readonly IAppStarterUnitOfWork unitOfWork;
+		private readonly IConsoleIO consoleIO;
+		private readonly ITextProvider<AppInfo> textProvider;
+
 		public AppInfoReadCommand(
 			IAppStarterUnitOfWork unitOfWork
-			, IConsoleIO consoleIO) : base(unitOfWork, consoleIO)
+			, IConsoleIO consoleIO
+			, ITextProvider<AppInfo> textProvider)
 		{
-		}
-
-		public override bool CanExecute(object parameter)
-		{
-			return true;
+			this.unitOfWork = unitOfWork;
+			this.consoleIO = consoleIO;
+			this.textProvider = textProvider;
 		}
 
 		public override void Execute(object parameter)
 		{
-			foreach (var item in AppInfoUnitOfWork.AppInfo.Get())
-			{
-				ConsoleIO.WriteLine($"{nameof(AppInfo.Id)} : {item.Id}");
-				ConsoleIO.WriteLine($"{nameof(AppInfo.Name)} : {item.Name}");
-				ConsoleIO.WriteLine($"{nameof(AppInfo.Description)} : {item.Description}");
-				ConsoleIO.WriteLine($"{nameof(AppInfo.Path)} : {item.Path}");
-			}
+			consoleIO.WriteLine(
+				textProvider.GetText(
+					unitOfWork.AppInfo.Get(
+						orderBy: a => a.OrderBy(p => p.Name)).ToList()));
 		}
 	}
 }

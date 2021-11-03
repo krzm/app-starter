@@ -1,45 +1,45 @@
 ﻿using AppStarter.Data.Model;
 using AppStarter.Data.Repository;
-using AppStarter.Lib.Commands.Base;
 using Console.Lib;
+using System.Collections.Generic;
 
 namespace AppStarter.Lib.Commands.Update
 {
-	public class AppInfoUpdateCommand : AppStarterReaderCommand<AppInfo>
+	public class AppInfoUpdateCommand : DataCommand<AppInfo>
 	{
-		public AppInfoUpdateCommand(
-			IAppStarterUnitOfWork unitOfWork
-			, IConsoleIO consoleIO
-			, IReader<string> textReader) : base(unitOfWork, consoleIO, textReader)
-		{
-		}
+		private readonly IAppStarterUnitOfWork unitOfWork;
+		private readonly IReader<string> requiredTextReader;
 
-		public override bool CanExecute(object parameter)
+		public AppInfoUpdateCommand(
+			IAppStarterUnitOfWork unitOfWork, 
+			List<IReader<string>> textReader)
 		{
-			return true;
+			this.unitOfWork = unitOfWork;
+			requiredTextReader = textReader[0];
 		}
 
 		public override void Execute(object parameter)
 		{
+			var id = int.Parse(requiredTextReader.Read(new ReadConfig(6, $"Select {TypeName} Id.")));
+			var model = unitOfWork.AppInfo.GetByID(id);
+
 			var name = nameof(AppInfo.Name);
 			var description = nameof(AppInfo.Description);
 			var path = nameof(AppInfo.Path);
 
-			ConsoleIO.WriteLine($"Select {TypeName} Id.");
-			var id = int.Parse(ConsoleIO.ReadLine());
-			var appInfo = AppStarterUnit.AppInfo.GetByID(id);
+			var nr = int.Parse(
+				requiredTextReader.Read(
+					new ReadConfig(6
+					, $"Select property number. 1-{name}, 2-{description}, 3-{path}")));
 
-			ConsoleIO.WriteLine($"Select property number. 1-{name}, 2-{description}, 3-{path}");
-			var nr = int.Parse(ConsoleIO.ReadLine());
 			if (nr == 1)
-				appInfo.Name = TextReader.Read(name);
+				model.Name = requiredTextReader.Read(new ReadConfig(50, name));
 			if (nr == 2)
-				appInfo.Description = TextReader.Read(description);
+				model.Description = requiredTextReader.Read(new ReadConfig(250, description));
 			if (nr == 3)
-				appInfo.Path = TextReader.Read(path);
+				model.Path = requiredTextReader.Read(new ReadConfig(250, path));
 
-			UnitOfWork.Save();
-			ConsoleIO.WriteLine($"{TypeName} updated.");
+			unitOfWork.Save();
 		}
 	}
 }

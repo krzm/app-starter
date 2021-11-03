@@ -1,8 +1,9 @@
-﻿using System.ComponentModel.DataAnnotations;
+﻿using Core.Model;
+using System.ComponentModel.DataAnnotations;
 
 namespace AppStarter.Data.Model
 {
-	public class AppInfo
+	public class AppInfo : IModelA
 	{
 		public int Id { get; set; }
 

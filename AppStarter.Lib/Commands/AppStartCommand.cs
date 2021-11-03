@@ -7,8 +7,9 @@ using System.Linq;
 
 namespace AppStarter.Lib
 {
-	public class AppStartCommand : IOCommand
+	public class AppStartCommand : ConsoleCommand
 	{
+		private readonly IConsoleIO consoleIO;
 		private readonly IProcessStarter processStarter;
 		private readonly IAppStarterUnitOfWork appStarterUnit;
 		private readonly IMapper mapper;
@@ -21,8 +22,9 @@ namespace AppStarter.Lib
 			IConsoleIO consoleIO
 			, IProcessStarter processStarter
 			, IAppStarterUnitOfWork appStarterUnit
-			, IMapper mapper) : base(consoleIO)
+			, IMapper mapper)
 		{
+			this.consoleIO = consoleIO;
 			this.processStarter = processStarter;
 			this.appStarterUnit = appStarterUnit;
 			this.mapper = mapper;
@@ -42,7 +44,7 @@ namespace AppStarter.Lib
 			var appData = appStarterUnit.AppInfo.Get(x => x.Name == appName).FirstOrDefault();
 			if (appData == null)
 			{
-				ConsoleIO.WriteLine("No app info in db.");
+				consoleIO.WriteLine("No app info in db.");
 			}
 			else
 			{
@@ -55,12 +57,12 @@ namespace AppStarter.Lib
 		{
 			if(appInfo != null)
 			{
-				ConsoleIO.WriteLine($"Start process : {appInfo.Name} in path {appInfo.Path}");
+				consoleIO.WriteLine($"Start process : {appInfo.Name} in path {appInfo.Path}");
 				if (appParams?.Length > 0)
 				{
 					foreach (var param in appParams)
 					{
-						ConsoleIO.WriteLine($"with argument : {param}");
+						consoleIO.WriteLine($"with argument : {param}");
 					}
 					try
 					{
@@ -68,7 +70,7 @@ namespace AppStarter.Lib
 					}
 					catch (Exception ex)
 					{
-						ConsoleIO.WriteLine(ex.Message);
+						consoleIO.WriteLine(ex.Message);
 					}
 				}
 				else
@@ -79,7 +81,7 @@ namespace AppStarter.Lib
 					}
 					catch (Exception ex)
 					{
-						ConsoleIO.WriteLine(ex.Message);
+						consoleIO.WriteLine(ex.Message);
 					}
 				}
 			}
@@ -91,7 +93,7 @@ namespace AppStarter.Lib
 				}
 				catch (Exception ex)
 				{
-					ConsoleIO.WriteLine(ex.Message);
+					consoleIO.WriteLine(ex.Message);
 				}
 			}
 		}
