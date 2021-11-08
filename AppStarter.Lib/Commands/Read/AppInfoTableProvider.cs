@@ -1,12 +1,18 @@
 ﻿using AppStarter.Data.Model;
 using Console.Lib;
 using System.Collections.Generic;
+using System.Linq;
 
 namespace AppStarter.Lib.Commands
 {
 	public class AppInfoTableProvider : ModelATableProvider<AppInfo>
 	{
-		protected override void CreateTableHeader()
+        public AppInfoTableProvider(
+			IColumnCalculator<AppInfo> columnCalculator) : base(columnCalculator)
+        {
+        }
+
+        protected override void CreateTableHeader()
 		{
 			SetColumns();
 		}
@@ -29,10 +35,38 @@ namespace AppStarter.Lib.Commands
 
 		protected override void SetColumnsSize(List<AppInfo> items)
 		{
-			SetColumn(items, nameof(AppInfo.Id), (e) => e.Id.ToString().Length);
-			SetColumn(items, nameof(AppInfo.Name), (e) => e.Name.Length);
-			SetColumn(items, nameof(AppInfo.Description), (e) => e.Description.Length);
-			SetColumn(items, nameof(AppInfo.Path), (e) => e.Path.Length);
+			SetColumn(nameof(AppInfo.Id), GetIdsLength(items));
+			SetColumn(nameof(AppInfo.Name), GetNameLength(items));
+			SetColumn(nameof(AppInfo.Description), GetDescriptionLength(items));
+			SetColumn(nameof(AppInfo.Path), GetIdsLength(items));
 		}
+
+		private List<int> GetIdsLength(List<AppInfo> models)
+        {
+            var rows = models.Select(e => e.Id.ToString().Length).ToList();
+			rows.Insert(0, nameof(AppInfo.Id).Length);
+			return rows;
+        }
+
+		private List<int> GetNameLength(List<AppInfo> models)
+        {
+            var rows = models.Select(e => e.Name.ToString().Length).ToList();
+			rows.Insert(0, nameof(AppInfo.Name).Length);
+			return rows;
+        }
+
+		private List<int> GetDescriptionLength(List<AppInfo> models)
+        {
+            var rows = models.Select(e => e.Description.ToString().Length).ToList();
+			rows.Insert(0, nameof(AppInfo.Description).Length);
+			return rows;
+        }
+
+		private List<int> GetPathLength(List<AppInfo> models)
+        {
+            var rows = models.Select(e => e.Path.ToString().Length).ToList();
+			rows.Insert(0, nameof(AppInfo.Path).Length);
+			return rows;
+        }
 	}
 }

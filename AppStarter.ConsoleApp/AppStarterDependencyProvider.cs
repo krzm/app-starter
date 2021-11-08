@@ -30,6 +30,7 @@ namespace AppStarter.ConsoleApp
 		{
 			base.RegisterUtilities();
 			Container
+				.RegisterType<IColumnCalculator<AppInfo>, ColumnCalculator<AppInfo>>()
 				.RegisterType<ITextProvider<AppInfo>, AppInfoTableProvider>()
 
 				.RegisterType<IProcessStarter, ProcessStarter>();
