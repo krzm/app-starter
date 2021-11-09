@@ -25,20 +25,20 @@ namespace AppStarter.Lib.Commands
 			AddColumn(GetColumnData(nameof(AppInfo.Path)));
 		}
 
-		protected override void CreateTableRow(AppInfo e)
+		protected override void CreateTableRow(AppInfo model)
 		{
-			AddValue(GetColumnData(nameof(AppInfo.Id)), e.Id.ToString());
-			AddValue(GetColumnData(nameof(AppInfo.Name)), e.Name);
-			AddValue(GetColumnData(nameof(AppInfo.Description)), e.Description);
-			AddValue(GetColumnData(nameof(AppInfo.Path)), e.Path);
+			AddValue(GetColumnData(nameof(AppInfo.Id)), model.Id.ToString());
+			AddValue(GetColumnData(nameof(AppInfo.Name)), model.Name);
+			AddValue(GetColumnData(nameof(AppInfo.Description)), model.Description);
+			AddValue(GetColumnData(nameof(AppInfo.Path)), model.Path);
 		}
 
-		protected override void SetColumnsSize(List<AppInfo> items)
+		protected override void SetColumnsSize(List<AppInfo> models)
 		{
-			SetColumn(nameof(AppInfo.Id), GetIdsLength(items));
-			SetColumn(nameof(AppInfo.Name), GetNameLength(items));
-			SetColumn(nameof(AppInfo.Description), GetDescriptionLength(items));
-			SetColumn(nameof(AppInfo.Path), GetIdsLength(items));
+			SetColumn(nameof(AppInfo.Id), GetIdsLength(models));
+			SetColumn(nameof(AppInfo.Name), GetNameLength(models));
+			SetColumn(nameof(AppInfo.Description), GetDescriptionLength(models));
+			SetColumn(nameof(AppInfo.Path), GetPathLength(models));
 		}
 
 		private List<int> GetIdsLength(List<AppInfo> models)
@@ -50,21 +50,21 @@ namespace AppStarter.Lib.Commands
 
 		private List<int> GetNameLength(List<AppInfo> models)
         {
-            var rows = models.Select(e => e.Name.ToString().Length).ToList();
+            var rows = models.Select(e => e.Name.Length).ToList();
 			rows.Insert(0, nameof(AppInfo.Name).Length);
 			return rows;
         }
 
 		private List<int> GetDescriptionLength(List<AppInfo> models)
         {
-            var rows = models.Select(e => e.Description.ToString().Length).ToList();
+            var rows = models.Select(e => e.Description.Length).ToList();
 			rows.Insert(0, nameof(AppInfo.Description).Length);
 			return rows;
         }
 
 		private List<int> GetPathLength(List<AppInfo> models)
         {
-            var rows = models.Select(e => e.Path.ToString().Length).ToList();
+            var rows = models.Select(e => e.Path.Length).ToList();
 			rows.Insert(0, nameof(AppInfo.Path).Length);
 			return rows;
         }
