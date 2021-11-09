@@ -114,11 +114,8 @@ namespace AppStarter.ConsoleApp
 		protected override void RegisterCommandsParser()
 		{
 			base.RegisterCommandsParser();
-			Container.RegisterType<ICommandParser, CommandWithParamsParser>(nameof(CommandWithParamsParser)
-				, new InjectionConstructor(new object[] {
-					Container.Resolve<ITextCommands>()
-					, Container.Resolve<ICommandParser>(nameof(CommandParser))
-					}));
+			Container.RegisterType<ICommandParser, CommandWithParamsParser>(
+				nameof(CommandWithParamsParser));
 		}
 
 		protected override void RegisterProgram()
