@@ -3,7 +3,7 @@ using AppStarter.Data.Repository;
 using Console.Lib;
 using System.Collections.Generic;
 
-namespace AppStarter.Lib.Commands.Update
+namespace AppStarter.Lib
 {
 	public class AppInfoUpdateCommand : DataCommand<AppInfo>
 	{

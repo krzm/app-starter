@@ -3,7 +3,7 @@ using AppStarter.Data.Repository;
 using Console.Lib;
 using System.Linq;
 
-namespace AppStarter.Lib.Commands
+namespace AppStarter.Lib
 {
 	public class AppInfoReadCommand : DataCommand<AppInfo>
 	{

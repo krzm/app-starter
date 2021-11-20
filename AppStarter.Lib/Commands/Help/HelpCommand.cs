@@ -1,6 +1,6 @@
 ﻿using Console.Lib;
 
-namespace AppStarter.Lib.Commands
+namespace AppStarter.Lib
 {
 	public class HelpCommand : ConsoleCommand
 	{

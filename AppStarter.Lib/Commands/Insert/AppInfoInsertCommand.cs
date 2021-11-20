@@ -3,7 +3,7 @@ using AppStarter.Data.Repository;
 using Console.Lib;
 using System.Collections.Generic;
 
-namespace AppStarter.Lib.Commands.Insert
+namespace AppStarter.Lib
 {
 	public class AppInfoInsertCommand : DataCommand<AppInfo>
 	{

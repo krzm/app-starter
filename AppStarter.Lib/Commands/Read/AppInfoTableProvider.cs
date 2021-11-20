@@ -3,7 +3,7 @@ using Console.Lib;
 using System.Collections.Generic;
 using System.Linq;
 
-namespace AppStarter.Lib.Commands
+namespace AppStarter.Lib
 {
 	public class AppInfoTableProvider : ModelATableProvider<AppInfo>
 	{

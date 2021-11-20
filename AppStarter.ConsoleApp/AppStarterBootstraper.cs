@@ -1,14 +1,14 @@
 using Console.Lib;
-using Core;
+using Core.Lib;
 using Unity;
 
 namespace AppStarter.ConsoleApp
 {
-	public class AppStarterBootstraper : ConsoleBootstraper
+    public class AppStarterBootstraper : ConsoleBootstraper
 	{
-		protected override void RegisterDependencyProviders()
+		protected override void RegisterDependencyCollection()
 		{
-			Container.RegisterSingleton<IDependencyProvider<IUnityContainer>, AppStarterDependencyProvider>();
+			Container.RegisterSingleton<IUnityDependencyCollection, AppStarterConfig>("DefaultConfig");
 		}
 	}
 }
