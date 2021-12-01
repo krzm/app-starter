@@ -1,4 +1,5 @@
 ﻿using Console.Lib;
+using Unity;
 
 namespace AppStarter.ConsoleApp
 {
@@ -6,7 +7,9 @@ namespace AppStarter.ConsoleApp
 	{
 		static void Main(string[] args)
 		{
-			IConsoleBootstraper booter = new AppStarterBootstraper();
+			IBootstraper booter = new Bootstraper(
+				new DependencyCollection(
+					new UnityContainer().AddExtension(new Diagnostic())));
 			booter.Boot(args);
 		}
 	}

@@ -5,10 +5,9 @@ using Unity;
 
 namespace AppStarter.ConsoleApp
 {
-    public class AppStarterDatabase
-        : UnityDependencyProvider
+    public class AppDatabase : UnityDependencyProvider
     {
-        public AppStarterDatabase(
+        public AppDatabase(
             IUnityContainer container) 
             : base(container)
         {

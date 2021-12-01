@@ -1,6 +1,7 @@
 ﻿using AppStarter.Data.Model;
 using AppStarter.Data.Repository;
 using Console.Lib;
+using System;
 using System.Linq;
 
 namespace AppStarter.Lib
@@ -8,22 +9,30 @@ namespace AppStarter.Lib
 	public class AppInfoReadCommand : DataCommand<AppInfo>
 	{
 		private readonly IAppStarterUnitOfWork unitOfWork;
-		private readonly IConsoleIO consoleIO;
+		private readonly IOutput output;
 		private readonly ITextProvider<AppInfo> textProvider;
 
 		public AppInfoReadCommand(
-			IAppStarterUnitOfWork unitOfWork
-			, IConsoleIO consoleIO
+			TextCommand command
+			, IAppStarterUnitOfWork unitOfWork
+			, IOutput output
 			, ITextProvider<AppInfo> textProvider)
+			: base(command)
 		{
+			ArgumentNullException.ThrowIfNull(unitOfWork);
+			ArgumentNullException.ThrowIfNull(output);
+			ArgumentNullException.ThrowIfNull(textProvider);
+
 			this.unitOfWork = unitOfWork;
-			this.consoleIO = consoleIO;
+			this.output = output;
 			this.textProvider = textProvider;
 		}
 
 		public override void Execute(object parameter)
 		{
-			consoleIO.WriteLine(
+			output.Clear();
+			output.WriteLine($"Read {TextCommand.TypeName}:");
+			output.WriteLine(
 				textProvider.GetText(
 					unitOfWork.AppInfo.Get(
 						orderBy: a => a.OrderBy(p => p.Name)).ToList()));

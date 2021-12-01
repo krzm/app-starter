@@ -9,7 +9,7 @@ namespace AppStarter.Lib
 {
 	public class AppStartCommand : ConsoleCommand
 	{
-		private readonly IConsoleIO consoleIO;
+		private readonly IOutput output;
 		private readonly IProcessStarter processStarter;
 		private readonly IAppStarterUnitOfWork appStarterUnit;
 		private readonly IMapper mapper;
@@ -19,12 +19,19 @@ namespace AppStarter.Lib
 		private Model.AppInfoModel appInfo;
 
 		public AppStartCommand(
-			IConsoleIO consoleIO
+			TextCommand textCommand
+			, IOutput output
 			, IProcessStarter processStarter
 			, IAppStarterUnitOfWork appStarterUnit
 			, IMapper mapper)
+			: base(textCommand)
 		{
-			this.consoleIO = consoleIO;
+			ArgumentNullException.ThrowIfNull(output);
+			ArgumentNullException.ThrowIfNull(processStarter);
+			ArgumentNullException.ThrowIfNull(appStarterUnit);
+			ArgumentNullException.ThrowIfNull(mapper);
+
+			this.output = output;
 			this.processStarter = processStarter;
 			this.appStarterUnit = appStarterUnit;
 			this.mapper = mapper;
@@ -34,17 +41,17 @@ namespace AppStarter.Lib
 		{
 			if (parameter is not TextCommand textCommand)
 				throw new Exception("No text command was passed.");
-			if(textCommand.ParamList.Length == 0)
+			if(textCommand.Params.Length == 0)
 				throw new Exception("No arguments passed.");
-			appName = textCommand.ParamList[0];
-			if(textCommand.ParamList.Length > 1)
+			appName = textCommand.Params[0];
+			if(textCommand.Params.Length > 1)
 			{
-				appParams = textCommand.ParamList.Skip(1).ToArray();
+				appParams = textCommand.Params.Skip(1).ToArray();
 			}
 			var appData = appStarterUnit.AppInfo.Get(x => x.Name == appName).FirstOrDefault();
 			if (appData == null)
 			{
-				consoleIO.WriteLine("No app info in db.");
+				output.WriteLine("No app info in db.");
 			}
 			else
 			{
@@ -57,12 +64,12 @@ namespace AppStarter.Lib
 		{
 			if(appInfo != null)
 			{
-				consoleIO.WriteLine($"Start process : {appInfo.Name} in path {appInfo.Path}");
+				output.WriteLine($"Start process : {appInfo.Name} in path {appInfo.Path}");
 				if (appParams?.Length > 0)
 				{
 					foreach (var param in appParams)
 					{
-						consoleIO.WriteLine($"with argument : {param}");
+						output.WriteLine($"with argument : {param}");
 					}
 					try
 					{
@@ -70,7 +77,7 @@ namespace AppStarter.Lib
 					}
 					catch (Exception ex)
 					{
-						consoleIO.WriteLine(ex.Message);
+						output.WriteLine(ex.Message);
 					}
 				}
 				else
@@ -81,7 +88,7 @@ namespace AppStarter.Lib
 					}
 					catch (Exception ex)
 					{
-						consoleIO.WriteLine(ex.Message);
+						output.WriteLine(ex.Message);
 					}
 				}
 			}
@@ -93,7 +100,7 @@ namespace AppStarter.Lib
 				}
 				catch (Exception ex)
 				{
-					consoleIO.WriteLine(ex.Message);
+					output.WriteLine(ex.Message);
 				}
 			}
 		}

@@ -1,6 +1,7 @@
 ﻿using AppStarter.Data.Model;
 using AppStarter.Data.Repository;
 using Console.Lib;
+using System;
 using System.Collections.Generic;
 
 namespace AppStarter.Lib
@@ -9,13 +10,25 @@ namespace AppStarter.Lib
 	{
 		private readonly IAppStarterUnitOfWork unitOfWork;
 		private readonly IReader<string> requiredTextReader;
+        private ICommandRunner commandRunner;
 
 		public AppInfoInsertCommand(
-			IAppStarterUnitOfWork unitOfWork
+			TextCommand command
+			, IAppStarterUnitOfWork unitOfWork
 			, List<IReader<string>> textReaders)
+			: base(command)
 		{
+			ArgumentNullException.ThrowIfNull(unitOfWork);
+			ArgumentNullException.ThrowIfNull(textReaders);
+
 			this.unitOfWork = unitOfWork;
 			requiredTextReader = textReaders[0];
+		}
+
+		public void SetCommandRunner(ICommandRunner commandRunner)
+		{
+			ArgumentNullException.ThrowIfNull(commandRunner);
+            this.commandRunner = commandRunner;
 		}
 
 		public override void Execute(object parameter)
@@ -28,6 +41,7 @@ namespace AppStarter.Lib
 					, Path = requiredTextReader.Read(new ReadConfig(250, nameof(AppInfo.Path)))
 				});
 			unitOfWork.Save();
+			commandRunner.RunCommand(TextCommand.TypeName.ToLowerInvariant());
 		}
 	}
 }

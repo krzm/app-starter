@@ -1,14 +1,12 @@
 using AppStarter.Data.Model;
-using AppStarter.Lib;
 using Console.Lib;
 using Unity;
 
 namespace AppStarter.ConsoleApp
 {
-    public class AppStarterConsoleOutput
-        : ConsoleOutput
+    public class AppOutput : Console.Lib.AppOutput
     {
-        public AppStarterConsoleOutput(
+        public AppOutput(
             IUnityContainer container) 
             : base(container)
         {
@@ -16,14 +14,14 @@ namespace AppStarter.ConsoleApp
 
         protected override void RegisterColumnCalculators()
         {
-             Container
+            Container
                 .RegisterType<IColumnCalculator<AppInfo>, ColumnCalculator<AppInfo>>();
         }
 
         protected override void RegisterTableProviders()
         {
-             Container
-                .RegisterType<ITextProvider<AppInfo>, AppInfoTableProvider>();
+            Container
+                .RegisterType<ITextProvider<AppInfo>, ModelATableProvider<AppInfo>>();
         }
     }
 }
