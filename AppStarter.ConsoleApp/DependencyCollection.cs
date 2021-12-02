@@ -33,6 +33,6 @@ namespace AppStarter.ConsoleApp
             RegisterDependencyProvider<AppCommands>();
 
 		 protected override void RegisterCommandSystem() => 
-			RegisterDependencyProvider<CommandSystem<ParamCommandParser>>();
+			RegisterDependencyProvider<AppCommandSystem<ParamCommandParser>>();
     }
 }

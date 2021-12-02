@@ -4,10 +4,10 @@ using Unity;
 
 namespace AppStarter.ConsoleApp
 {
-    public class CommandSystem<TParser> : Console.Lib.CommandSystem<TParser>
+    public class AppCommandSystem<TParser> : Console.Lib.AppCommandSystem<TParser>
         where TParser : ICommandParser
     {
-        public CommandSystem(
+        public AppCommandSystem(
             IUnityContainer container) 
             : base(container)
         {
