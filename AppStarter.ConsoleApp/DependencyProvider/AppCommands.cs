@@ -2,7 +2,9 @@ using System.Collections.Generic;
 using AppStarter.Data.Model;
 using AppStarter.Data.Repository;
 using AppStarter.Lib;
+using AutoMapper;
 using Console.Lib;
+using Core;
 using Unity;
 
 namespace AppStarter.ConsoleApp
@@ -49,6 +51,13 @@ namespace AppStarter.ConsoleApp
                 "Update AppInfo".ToLowerInvariant()
                 , Container.Resolve<IAppStarterUnitOfWork>()
                 , Container.Resolve<List<IReader<string>>>());
+            
+            RegisterCommand<AppStartCommand>(
+                "Start".ToLowerInvariant()
+                , Container.Resolve<IOutput>()
+                , Container.Resolve<IProcessStarter>()
+                , Container.Resolve<IAppStarterUnitOfWork>()
+                , Container.Resolve<IMapper>());
         }
     }
 }

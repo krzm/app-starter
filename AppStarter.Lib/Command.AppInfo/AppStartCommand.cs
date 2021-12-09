@@ -39,14 +39,14 @@ namespace AppStarter.Lib
 
 		public override bool CanExecute(object parameter)
 		{
-			if (parameter is not TextCommand textCommand)
-				throw new Exception("No text command was passed.");
-			if(textCommand.Params.Length == 0)
+			if (parameter is not string[] textParams)
+				throw new Exception("Expected string[] type as params.}");
+			if(textParams.Length == 0)
 				throw new Exception("No arguments passed.");
-			appName = textCommand.Params[0];
-			if(textCommand.Params.Length > 1)
+			appName = textParams[0];
+			if(textParams.Length > 1)
 			{
-				appParams = textCommand.Params.Skip(1).ToArray();
+				appParams =textParams.Skip(1).ToArray();
 			}
 			var appData = appStarterUnit.AppInfo.Get(x => x.Name == appName).FirstOrDefault();
 			if (appData == null)
