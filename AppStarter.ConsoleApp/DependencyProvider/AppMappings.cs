@@ -3,25 +3,20 @@ using AppStarter.Lib.Model;
 using AutoMapper;
 using Unity;
 
-namespace AppStarter.ConsoleApp
-{
-    public class AppMappings : Console.Lib.AppMappings
-    {
-        public AppMappings(
-            IUnityContainer container) 
-            : base(container)
-        {
-        }
+namespace AppStarter.ConsoleApp;
 
-        public override void RegisterDependencies()
-        {
-            var config = new MapperConfiguration(
-                cfg => 
-                {
-                    cfg.CreateMap<AppInfo, AppInfoModel>();
-                });
-                
-			Container.RegisterInstance(config.CreateMapper());
-        }
+public class AppMappings : CLI.Core.Lib.AppMappings
+{
+    public AppMappings(
+        IUnityContainer container) 
+        : base(container)
+    {
     }
+
+    protected override MapperConfiguration CreateMap() => 
+        new (
+            cfg =>
+            {
+                cfg.CreateMap<AppInfo, AppInfoModel>();
+            });
 }

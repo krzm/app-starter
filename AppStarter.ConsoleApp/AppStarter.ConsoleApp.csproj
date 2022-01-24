@@ -1,35 +1,44 @@
 ﻿<Project Sdk="Microsoft.NET.Sdk">
 
-  <PropertyGroup>
-    <OutputType>Exe</OutputType>
-    <TargetFramework>net6.0</TargetFramework>
-    <StartupObject>AppStarter.ConsoleApp.Program</StartupObject>
-  </PropertyGroup>
+	<PropertyGroup>
+		<OutputType>Exe</OutputType>
+		<TargetFramework>net6.0</TargetFramework>
+		<StartupObject>AppStarter.ConsoleApp.Program</StartupObject>
+	</PropertyGroup>
 
-  <ItemGroup>
-    <PackageReference Include="AutoMapper" Version="10.1.1" />
-    <PackageReference Include="Microsoft.EntityFrameworkCore.Design" Version="5.0.10">
-      <PrivateAssets>all</PrivateAssets>
-      <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
-    </PackageReference>
-    <PackageReference Include="Microsoft.EntityFrameworkCore.SqlServer" Version="5.0.10" />
-    <PackageReference Include="Unity" Version="5.11.10" />
-  </ItemGroup>
+	<ItemGroup>
+		<PackageReference Include="AutoMapper" Version="10.1.1" />
+		<PackageReference Include="Microsoft.EntityFrameworkCore.Design" Version="5.0.10">
+			<PrivateAssets>all</PrivateAssets>
+			<IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
+		</PackageReference>
+		<PackageReference Include="Microsoft.EntityFrameworkCore.SqlServer" Version="5.0.10" />
+		<PackageReference Include="Unity" Version="5.11.10" />
+	</ItemGroup>
 
-  <ItemGroup>
-    <ProjectReference Include="..\AppStarter.Lib\AppStarter.Lib.csproj" />
-    <ProjectReference Include="..\AppStarter.Data\AppStarter.Data.csproj" />
-  </ItemGroup>
+	<ItemGroup>
+		<ProjectReference Include="..\AppStarter.Lib\AppStarter.Lib.csproj" />
+		<ProjectReference Include="..\AppStarter.Data\AppStarter.Data.csproj" />
+	</ItemGroup>
 
- <ItemGroup>
-    <Reference Include="Console.Lib">
-      <HintPath>..\..\Console\Console.Lib\bin\Release\net6.0\Console.Lib.dll</HintPath>
-    </Reference>
-    <Reference Include="Core">
-      <HintPath>..\..\Core\Core\bin\Release\net6.0\Core.dll</HintPath>
-    </Reference>
-    <Reference Include="Core.Lib">
-      <HintPath>..\..\Core\Core.Lib\bin\Release\net6.0\Core.Lib.dll</HintPath>
-    </Reference>
-  </ItemGroup>
+	<ItemGroup>
+		<Reference Include="Core">
+			<HintPath>..\..\Core\Core\bin\Release\net6.0\Core.dll</HintPath>
+		</Reference>
+		<Reference Include="Core.Lib">
+			<HintPath>..\..\Core\Core.Lib\bin\Release\net6.0\Core.Lib.dll</HintPath>
+		</Reference>
+		<Reference Include="CLI.Core">
+			<HintPath>..\..\Console\CLI.Core\bin\Release\net6.0\CLI.Core.dll</HintPath>
+		</Reference>
+		<Reference Include="CLI.Core.Lib">
+			<HintPath>..\..\Console\CLI.Core.Lib\bin\Release\net6.0\CLI.Core.Lib.dll</HintPath>
+		</Reference>
+		<Reference Include="DataToTable">
+			<HintPath>..\..\DataToTable\DataToTable\bin\Release\net6.0\DataToTable.dll</HintPath>
+		</Reference>
+		<Reference Include="Console.Lib">
+			<HintPath>..\..\Console\Console.Lib\bin\Release\net6.0\Console.Lib.dll</HintPath>
+		</Reference>
+	</ItemGroup>
 </Project>
