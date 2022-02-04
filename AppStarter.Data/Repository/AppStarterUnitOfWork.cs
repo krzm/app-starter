@@ -1,50 +1,49 @@
-﻿using AppStarter.Data.Model;
-using Core.Lib;
+﻿using EFCoreHelper;
 using System;
 
-namespace AppStarter.Data.Repository
+namespace AppStarter.Data;
+
+public class AppStarterUnitOfWork 
+	: IAppStarterUnitOfWork
 {
-	public class AppStarterUnitOfWork : IAppStarterUnitOfWork
+	private readonly AppStarterDbContext context = new();
+	private EFGenericRepository<AppInfo, AppStarterDbContext> game;
+	
+	private bool disposed = false;
+
+	public EFGenericRepository<AppInfo, AppStarterDbContext> AppInfo
 	{
-		private readonly AppStarterDbContext context = new();
-		private EFGenericRepository<AppInfo, AppStarterDbContext> game;
-		
-		private bool disposed = false;
-
-		public EFGenericRepository<AppInfo, AppStarterDbContext> AppInfo
+		get
 		{
-			get
-			{
 
-				if (game == null)
-				{
-					game = new EFGenericRepository<AppInfo, AppStarterDbContext>(context);
-				}
-				return game;
+			if (game == null)
+			{
+				game = new EFGenericRepository<AppInfo, AppStarterDbContext>(context);
+			}
+			return game;
+		}
+	}
+
+	public void Save()
+	{
+		context.SaveChanges();
+	}
+
+	protected virtual void Dispose(bool disposing)
+	{
+		if (!disposed)
+		{
+			if (disposing)
+			{
+				context.Dispose();
 			}
 		}
+		disposed = true;
+	}
 
-		public void Save()
-		{
-			context.SaveChanges();
-		}
-
-		protected virtual void Dispose(bool disposing)
-		{
-			if (!disposed)
-			{
-				if (disposing)
-				{
-					context.Dispose();
-				}
-			}
-			disposed = true;
-		}
-
-		public void Dispose()
-		{
-			Dispose(true);
-			GC.SuppressFinalize(this);
-		}
+	public void Dispose()
+	{
+		Dispose(true);
+		GC.SuppressFinalize(this);
 	}
 }

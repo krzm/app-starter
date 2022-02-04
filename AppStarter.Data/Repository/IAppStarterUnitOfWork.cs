@@ -1,11 +1,9 @@
-﻿using AppStarter.Data.Model;
-using Core;
-using Core.Lib;
+﻿using EFCoreHelper;
 
-namespace AppStarter.Data.Repository
+namespace AppStarter.Data;
+
+public interface IAppStarterUnitOfWork 
+	: IUnitOfWork
 {
-	public interface IAppStarterUnitOfWork : IUnitOfWork
-	{
-		EFGenericRepository<AppInfo, AppStarterDbContext> AppInfo { get; }
-	}
+	EFGenericRepository<AppInfo, AppStarterDbContext> AppInfo { get; }
 }

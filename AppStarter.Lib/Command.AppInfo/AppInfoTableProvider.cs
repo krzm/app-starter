@@ -1,14 +1,16 @@
-﻿using AppStarter.Data.Model;
+﻿using AppStarter.Data;
 using DataToTable;
 using System.Collections.Generic;
 using System.Linq;
 
 namespace AppStarter.Lib;
 
-public class AppInfoTableProvider : ModelATable<AppInfo>
+public class AppInfoTableProvider 
+	: ModelATable<AppInfo>
 {
     public AppInfoTableProvider(
-		IColumnCalculator<AppInfo> columnCalculator) : base(columnCalculator)
+		IColumnCalculator<AppInfo> columnCalculator) 
+			: base(columnCalculator)
     {
     }
 

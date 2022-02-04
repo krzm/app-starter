@@ -1,11 +1,12 @@
-using AppStarter.Data.Model;
-using AppStarter.Lib.Model;
+using AppStarter.Data;
+using AppStarter.Lib;
 using AutoMapper;
 using Unity;
 
 namespace AppStarter.ConsoleApp;
 
-public class AppMappings : CLI.Core.Lib.AppMappings
+public class AppMappings 
+    : DIHelper.Unity.AppMappings
 {
     public AppMappings(
         IUnityContainer container) 

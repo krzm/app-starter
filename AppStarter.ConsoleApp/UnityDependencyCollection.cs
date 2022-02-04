@@ -1,37 +1,38 @@
-using Console.Lib;
+using CLIFramework;
 using Unity;
 
 namespace AppStarter.ConsoleApp;
 
-public class UnityDependencyCollection : Console.Lib.UnityDependencyCollection
+public class UnityDependencySuite 
+	: CLIFramework.UnityDependencySuite
 {
-	public UnityDependencyCollection(
+	public UnityDependencySuite(
 		IUnityContainer container) 
 		: base(container)
 	{
 	}
 
-    public override void RegisterDependencies()
+    public override void Register()
     {
-		RegisterDependencyProvider<AppDatabase>();
-		base.RegisterDependencies();
+		RegisterSet<AppDatabase>();
+		base.Register();
     }
 
 	protected override void RegisterAppData() => 
-		RegisterDependencyProvider<AppData>();
+		RegisterSet<AppData>();
 
 	protected override void RegisterDataMappings() => 
-		RegisterDependencyProvider<AppMappings>();
+		RegisterSet<AppMappings>();
 
 	protected override void RegisterConsoleOutput() => 
-        RegisterDependencyProvider<AppOutput>();
+        RegisterSet<AppOutput>();
 
 	protected override void RegisterUtils() => 
-		RegisterDependencyProvider<AppUtils>();
+		RegisterSet<AppUtils>();
 
 	protected override void RegisterCommands() => 
-        RegisterDependencyProvider<AppCommands>();
+        RegisterSet<AppCommands>();
 
 	protected override void RegisterCommandSystem() => 
-		RegisterDependencyProvider<AppCommandSystem<ParamCommandParser>>();
+		RegisterSet<AppCommandSystem<ParamCommandParser>>();
 }

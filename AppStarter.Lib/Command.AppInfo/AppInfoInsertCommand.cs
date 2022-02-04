@@ -1,13 +1,14 @@
-﻿using AppStarter.Data.Model;
-using AppStarter.Data.Repository;
-using CLI.Core;
-using Console.Lib;
+﻿using AppStarter.Data;
+using CLIFramework;
+using CLIHelper;
+using CLIReader;
 using System;
 using System.Collections.Generic;
 
 namespace AppStarter.Lib;
 
-public class AppInfoInsertCommand : DataCommand<AppInfo>
+public class AppInfoInsertCommand 
+	: DataCommand<AppInfo>
 {
 	private readonly IAppStarterUnitOfWork unitOfWork;
 	private readonly IReader<string> requiredTextReader;

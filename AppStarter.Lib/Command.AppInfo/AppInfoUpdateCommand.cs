@@ -1,13 +1,14 @@
-﻿using AppStarter.Data.Model;
-using AppStarter.Data.Repository;
-using CLI.Core;
-using Console.Lib;
-using System;
+﻿using System;
 using System.Collections.Generic;
+using AppStarter.Data;
+using CLIFramework;
+using CLIHelper;
+using CLIReader;
 
 namespace AppStarter.Lib;
 
-public class AppInfoUpdateCommand : DataCommand<AppInfo>
+public class AppInfoUpdateCommand 
+	: DataCommand<AppInfo>
 {
 	private readonly IAppStarterUnitOfWork unitOfWork;
 	private readonly IReader<string> requiredTextReader;
@@ -34,7 +35,8 @@ public class AppInfoUpdateCommand : DataCommand<AppInfo>
 
 	public override void Execute(object parameter)
 	{
-		var id = int.Parse(requiredTextReader.Read(new ReadConfig(6, $"Select {TextCommand.TypeName} Id.")));
+		var id = int.Parse(requiredTextReader.Read(
+			new ReadConfig(6, $"Select {TextCommand.TypeName} Id.")));
 		var model = unitOfWork.AppInfo.GetByID(id);
 
 		var name = nameof(AppInfo.Name);

@@ -1,15 +1,13 @@
-﻿using AppStarter.Data.Model;
-using Microsoft.EntityFrameworkCore;
+﻿using Microsoft.EntityFrameworkCore;
 
-namespace AppStarter.Data
+namespace AppStarter.Data;
+
+public class AppStarterDbContext : DbContext
 {
-	public class AppStarterDbContext : DbContext
-	{
-		public DbSet<AppInfo> AppInfo { get; set; }
+	public DbSet<AppInfo> AppInfo { get; set; }
 
-		protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
-		{
-			optionsBuilder.UseSqlServer(@"Server=(localdb)\mssqllocaldb;Database=AppStarter");
-		}
+	protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
+	{
+		optionsBuilder.UseSqlServer(@"Server=(localdb)\mssqllocaldb;Database=AppStarter");
 	}
 }

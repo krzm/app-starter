@@ -1,17 +1,18 @@
 using System.Collections.Generic;
-using AppStarter.Data.Model;
-using AppStarter.Data.Repository;
+using AppStarter.Data;
 using AppStarter.Lib;
 using AutoMapper;
-using CLI.Core;
-using Console.Lib;
-using Core;
+using CLIFramework;
+using CLIHelper;
+using CLIReader;
 using DataToTable;
+using DotNetTool;
 using Unity;
 
 namespace AppStarter.ConsoleApp;
 
-public class AppCommands : Console.Lib.AppCommands
+public class AppCommands 
+    : CLIFramework.AppCommands
 {
     public AppCommands(
         IUnityContainer container) 
@@ -22,7 +23,6 @@ public class AppCommands : Console.Lib.AppCommands
     protected override void RegisterCommands()
     {
         base.RegisterCommands();
-			
         RegisterAppInfoCommands();
     }
 

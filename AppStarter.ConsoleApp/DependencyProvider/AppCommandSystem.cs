@@ -1,10 +1,11 @@
 using AppStarter.Lib;
-using Console.Lib;
+using CLIFramework;
 using Unity;
 
 namespace AppStarter.ConsoleApp;
 
-public class AppCommandSystem<TParser> : Console.Lib.AppCommandSystem<TParser>
+public class AppCommandSystem<TParser> 
+    : CLIFramework.AppCommandSystem<TParser>
     where TParser : ICommandParser
 {
     public AppCommandSystem(

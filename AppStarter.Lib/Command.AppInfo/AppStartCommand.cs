@@ -1,14 +1,15 @@
-﻿using AppStarter.Data.Repository;
+﻿using AppStarter.Data;
 using AutoMapper;
-using CLI.Core;
-using Console.Lib;
-using Core;
+using CLIFramework;
+using CLIHelper;
+using DotNetTool;
 using System;
 using System.Linq;
 
 namespace AppStarter.Lib;
 
-public class AppStartCommand : ConsoleCommand
+public class AppStartCommand 
+	: ConsoleCommand
 {
 	private readonly IOutput output;
 	private readonly IProcessStarter processStarter;
@@ -17,7 +18,7 @@ public class AppStartCommand : ConsoleCommand
 
 	private string appName;
 	private string[] appParams;
-	private Model.AppInfoModel appInfo;
+	private AppInfoModel appInfo;
 
 	public AppStartCommand(
 		TextCommand textCommand
@@ -56,7 +57,7 @@ public class AppStartCommand : ConsoleCommand
 		}
 		else
 		{
-			appInfo = mapper.Map<Model.AppInfoModel>(appData);
+			appInfo = mapper.Map<AppInfoModel>(appData);
 		}
 		return true;
 	}

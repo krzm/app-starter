@@ -1,9 +1,10 @@
-using Console.Lib;
+using CLIFramework;
 using Unity;
 
 namespace AppStarter.ConsoleApp;
 
-public class AppData : Console.Lib.AppData
+public class AppData 
+    : CLIFramework.AppData
 {
     public AppData(
         IUnityContainer container) 

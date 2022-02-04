@@ -1,11 +1,12 @@
-using AppStarter.Data.Repository;
-using Core;
-using Core.Lib;
+using AppStarter.Data;
+using DIHelper.Unity;
+using EFCoreHelper;
 using Unity;
 
 namespace AppStarter.ConsoleApp;
 
-public class AppDatabase : UnityDependencyProvider
+public class AppDatabase 
+    : UnityDependencySet
 {
     public AppDatabase(
         IUnityContainer container) 
@@ -13,7 +14,7 @@ public class AppDatabase : UnityDependencyProvider
     {
     }
 
-    public override void RegisterDependencies()
+    public override void Register()
     {
         var unitOfWork = Container.Resolve<AppStarterUnitOfWork>();
         Container.RegisterInstance<IUnitOfWork>(unitOfWork, InstanceLifetime.Singleton);

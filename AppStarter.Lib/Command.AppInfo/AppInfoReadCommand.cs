@@ -1,14 +1,14 @@
-﻿using AppStarter.Data.Model;
-using AppStarter.Data.Repository;
-using CLI.Core;
-using Console.Lib;
+﻿using AppStarter.Data;
+using CLIFramework;
+using CLIHelper;
 using DataToTable;
 using System;
 using System.Linq;
 
 namespace AppStarter.Lib;
 
-public class AppInfoReadCommand : DataCommand<AppInfo>
+public class AppInfoReadCommand 
+	: DataCommand<AppInfo>
 {
 	private readonly IAppStarterUnitOfWork unitOfWork;
 	private readonly IOutput output;
