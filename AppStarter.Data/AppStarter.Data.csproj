@@ -18,10 +18,10 @@
 
   <ItemGroup>
     <Reference Include="EFCoreHelper">
-			<HintPath>..\..\build\Build\efcore-helper\EFCoreHelper\EFCoreHelper.dll</HintPath>
+			<HintPath>..\..\..\Build\efcore-helper\EFCoreHelper\EFCoreHelper.dll</HintPath>
 		</Reference>
     <Reference Include="ModelHelper">
-			<HintPath>..\..\build\Build\model-helper\ModelHelper\ModelHelper.dll</HintPath>
+			<HintPath>..\..\..\Build\model-helper\ModelHelper\ModelHelper.dll</HintPath>
 		</Reference>
   </ItemGroup>
 
