@@ -21,6 +21,8 @@ public class AppOutput
 
     protected override void RegisterTableProviders()
     {
+        Container.RegisterType<ITableTextEditor, TableTextEditor>();
+
         Container
             .RegisterType<IDataToText<AppInfo>, ModelATable<AppInfo>>();
     }

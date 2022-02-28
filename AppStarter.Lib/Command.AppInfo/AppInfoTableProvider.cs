@@ -9,8 +9,10 @@ public class AppInfoTableProvider
 	: ModelATable<AppInfo>
 {
     public AppInfoTableProvider(
-		IColumnCalculator<AppInfo> columnCalculator) 
-			: base(columnCalculator)
+		ITableTextEditor tableTextEditor
+		, IColumnCalculator<AppInfo> columnCalculator) 
+			: base(tableTextEditor
+				, columnCalculator)
     {
     }
 
@@ -21,18 +23,18 @@ public class AppInfoTableProvider
 
 	private void SetColumns()
 	{
-		AddColumn(GetColumnData(nameof(AppInfo.Id)));
-		AddColumn(GetColumnData(nameof(AppInfo.Name)));
-		AddColumn(GetColumnData(nameof(AppInfo.Description)));
-		AddColumn(GetColumnData(nameof(AppInfo.Path)));
+		Editor.AddColumn(GetColumnData(nameof(AppInfo.Id)));
+		Editor.AddColumn(GetColumnData(nameof(AppInfo.Name)));
+		Editor.AddColumn(GetColumnData(nameof(AppInfo.Description)));
+		Editor.AddColumn(GetColumnData(nameof(AppInfo.Path)));
 	}
 
 	protected override void CreateTableRow(AppInfo model)
 	{
-		AddValue(GetColumnData(nameof(AppInfo.Id)), model.Id.ToString());
-		AddValue(GetColumnData(nameof(AppInfo.Name)), model.Name);
-		AddValue(GetColumnData(nameof(AppInfo.Description)), model.Description);
-		AddValue(GetColumnData(nameof(AppInfo.Path)), model.Path);
+		Editor.AddValue(GetColumnData(nameof(AppInfo.Id)), model.Id.ToString());
+		Editor.AddValue(GetColumnData(nameof(AppInfo.Name)), model.Name);
+		Editor.AddValue(GetColumnData(nameof(AppInfo.Description)), model.Description);
+		Editor.AddValue(GetColumnData(nameof(AppInfo.Path)), model.Path);
 	}
 
 	protected override void SetColumnsSize(List<AppInfo> models)
