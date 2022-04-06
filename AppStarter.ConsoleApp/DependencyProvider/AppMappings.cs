@@ -6,7 +6,7 @@ using Unity;
 namespace AppStarter.ConsoleApp;
 
 public class AppMappings 
-    : DIHelper.Unity.AppMappings
+    : ModelHelper.AppMappings
 {
     public AppMappings(
         IUnityContainer container) 
@@ -16,8 +16,8 @@ public class AppMappings
 
     protected override MapperConfiguration CreateMap() => 
         new (
-            cfg =>
-            {
-                cfg.CreateMap<AppInfo, AppInfoModel>();
-            });
+        c =>
+        {
+            c.CreateMap<AppInfo, AppInfoModel>();
+        });
 }

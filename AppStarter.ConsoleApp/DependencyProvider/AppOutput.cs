@@ -1,11 +1,12 @@
 using AppStarter.Data;
 using DataToTable;
+using DataToTable.Unity;
 using Unity;
 
 namespace AppStarter.ConsoleApp;
 
 public class AppOutput 
-    : DIHelper.Unity.AppOutput
+    : DataToTableSet
 {
     public AppOutput(
         IUnityContainer container) 
@@ -21,9 +22,8 @@ public class AppOutput
 
     protected override void RegisterTableProviders()
     {
-        Container.RegisterType<ITableTextEditor, TableTextEditor>();
-
         Container
+            .RegisterType<ITableTextEditor, TableTextEditor>()
             .RegisterType<IDataToText<AppInfo>, ModelATable<AppInfo>>();
     }
 }

@@ -1,4 +1,8 @@
 using CLIFramework;
+using CLIHelper.Unity;
+using CLIReader;
+using Config.Wrapper.Unity;
+using Serilog.Wrapper.Unity;
 using Unity;
 
 namespace AppStarter.ConsoleApp;
@@ -12,17 +16,24 @@ public class UnityDependencySuite
 	{
 	}
 
-    public override void Register()
-    {
-		RegisterSet<AppDatabase>();
-		base.Register();
-    }
-
-	protected override void RegisterAppData() => 
+	protected override void RegisterAppData()
+	{
+		RegisterSet<AppLoggerSet>();
+        RegisterSet<AppConfigSet>();
 		RegisterSet<AppData>();
+	}
+
+	protected override void RegisterDatabase() => 
+        RegisterSet<AppDatabase>();
 
 	protected override void RegisterDataMappings() => 
 		RegisterSet<AppMappings>();
+
+	protected override void RegisterConsoleInput()
+    {
+        RegisterSet<CliIOSet>();
+        RegisterSet<CLIReaderSet>();
+    }
 
 	protected override void RegisterConsoleOutput() => 
         RegisterSet<AppOutput>();
