@@ -31,7 +31,7 @@
 	</ItemGroup>
 
 	<!--Debug refs-->
-	<ItemGroup>
+	<!-- <ItemGroup>
 		<Reference Include="EFCoreHelper">
 			<HintPath>..\..\efcore-helper\EFCoreHelper\bin\Debug\net6.0\EFCoreHelper.dll</HintPath>
 		</Reference>
@@ -61,17 +61,14 @@
 		</Reference>
 		<Reference Include="Serilog.Wrapper">
 			<HintPath>..\..\serilog-wrapper\Serilog.Wrapper\bin\Debug\net6.0\Serilog.Wrapper.dll</HintPath>
-		</Reference>
-		<Reference Include="CRUDCommandHelper">
-			<HintPath>..\..\crud-command-helper\CRUDCommandHelper\bin\Debug\net6.0\CRUDCommandHelper.dll</HintPath>
-		</Reference>
+		</Reference>  
 		<Reference Include="CLIFramework">
 			<HintPath>..\..\cli-framework\CLIFramework\bin\Debug\net6.0\CLIFramework.dll</HintPath>
 		</Reference>
-	</ItemGroup>
+	</ItemGroup> -->
 
 	<!--Release refs-->
-	<!-- <ItemGroup>
+	<ItemGroup>
 		<Reference Include="EFCoreHelper">
 			<HintPath>..\..\..\Build\efcore-helper\EFCoreHelper\EFCoreHelper.dll</HintPath>
 		</Reference>
@@ -102,11 +99,8 @@
 		<Reference Include="Serilog.Wrapper">
 			<HintPath>..\..\..\Build\serilog-wrapper\Serilog.Wrapper\Serilog.Wrapper.dll</HintPath>
 		</Reference>
-		<Reference Include="CRUDCommandHelper">
-			<HintPath>..\..\..\Build\crud-command-helper\CRUDCommandHelper\CRUDCommandHelper.dll</HintPath>
-		</Reference>
 		<Reference Include="CLIFramework">
 			<HintPath>..\..\..\Build\cli-framework\CLIFramework\CLIFramework.dll</HintPath>
 		</Reference>
-	</ItemGroup> -->
+	</ItemGroup>
 </Project>
