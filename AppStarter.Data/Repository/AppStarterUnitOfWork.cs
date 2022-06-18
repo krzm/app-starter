@@ -1,49 +1,25 @@
-﻿using EFCoreHelper;
+﻿using EFCore.Helper;
 using System;
 
 namespace AppStarter.Data;
 
 public class AppStarterUnitOfWork 
-	: IAppStarterUnitOfWork
+    : UnitOfWork
+        , IAppStarterUnitOfWork
 {
-	private readonly AppStarterDbContext context = new();
-	private EFGenericRepository<AppInfo, AppStarterDbContext> game;
+	private readonly AppStarterDbContext context;
+	private IRepository<AppInfo> appInfo;
 	
-	private bool disposed = false;
+    public IRepository<AppInfo> AppInfo => appInfo;
 
-	public EFGenericRepository<AppInfo, AppStarterDbContext> AppInfo
-	{
-		get
-		{
-
-			if (game == null)
-			{
-				game = new EFGenericRepository<AppInfo, AppStarterDbContext>(context);
-			}
-			return game;
-		}
-	}
-
-	public void Save()
-	{
-		context.SaveChanges();
-	}
-
-	protected virtual void Dispose(bool disposing)
-	{
-		if (!disposed)
-		{
-			if (disposing)
-			{
-				context.Dispose();
-			}
-		}
-		disposed = true;
-	}
-
-	public void Dispose()
-	{
-		Dispose(true);
-		GC.SuppressFinalize(this);
-	}
+    public AppStarterUnitOfWork(
+        AppStarterDbContext context
+        , IRepository<AppInfo> appInfo)
+            : base(context)
+    {
+        ArgumentNullException.ThrowIfNull(context);
+        ArgumentNullException.ThrowIfNull(appInfo);
+        this.context = context;
+        this.appInfo = appInfo;
+    }
 }

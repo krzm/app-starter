@@ -1,21 +1,17 @@
-	<Project Sdk="Microsoft.NET.Sdk">
-
+<Project Sdk="Microsoft.NET.Sdk">
 	<PropertyGroup>
 		<TargetFramework>net6.0</TargetFramework>
 	</PropertyGroup>
-
 	<ItemGroup>
-		<PackageReference Include="AutoMapper" Version="11.0.0" />
+		<PackageReference Include="AutoMapper" Version="11.0.1"/>
 	</ItemGroup>
-	
 	<ItemGroup>
-		<ProjectReference Include="..\AppStarter.Data\AppStarter.Data.csproj" />
+		<ProjectReference Include="..\AppStarter.Data\AppStarter.Data.csproj"/>
 	</ItemGroup>
-
 	<!--Debug refs-->
 	<!-- <ItemGroup>
-		<Reference Include="EFCoreHelper">
-			<HintPath>..\..\efcore-helper\EFCoreHelper\bin\Debug\net6.0\EFCoreHelper.dll</HintPath>
+		<Reference Include="EFCore.Helper">
+			<HintPath>..\..\efcore-helper\EFCore.Helper\bin\Debug\net6.0\EFCore.Helper.dll</HintPath>
 		</Reference>
 		<Reference Include="DotNetTool">
 			<HintPath>..\..\dotnet-tool\DotNetTool\bin\Debug\net6.0\DotNetTool.dll</HintPath>
@@ -36,11 +32,10 @@
 			<HintPath>..\..\cli-framework\CLIFramework\bin\Debug\net6.0\CLIFramework.dll</HintPath>
 		</Reference>
 	</ItemGroup> -->
-
 	<!--Release refs-->
 	<ItemGroup>
-		<Reference Include="EFCoreHelper">
-			<HintPath>..\..\..\Build\efcore-helper\EFCoreHelper\EFCoreHelper.dll</HintPath>
+		<Reference Include="EFCore.Helper">
+			<HintPath>..\..\..\Build\efcore-helper\EFCore.Helper\EFCore.Helper.dll</HintPath>
 		</Reference>
 		<Reference Include="DotNetTool">
 			<HintPath>..\..\..\Build\dotnet-tool\DotNetTool\DotNetTool.dll</HintPath>
@@ -61,5 +56,4 @@
 			<HintPath>..\..\..\Build\cli-framework\CLIFramework\CLIFramework.dll</HintPath>
 		</Reference>
 	</ItemGroup>
-
 </Project>

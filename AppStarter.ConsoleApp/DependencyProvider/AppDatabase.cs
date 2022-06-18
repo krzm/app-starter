@@ -1,6 +1,6 @@
 using AppStarter.Data;
 using DIHelper.Unity;
-using EFCoreHelper;
+using EFCore.Helper;
 using Unity;
 
 namespace AppStarter.ConsoleApp;
@@ -16,8 +16,11 @@ public class AppDatabase
 
     public override void Register()
     {
-        var unitOfWork = Container.Resolve<AppStarterUnitOfWork>();
-        Container.RegisterInstance<IUnitOfWork>(unitOfWork, InstanceLifetime.Singleton);
-		Container.RegisterInstance<IAppStarterUnitOfWork>(unitOfWork, InstanceLifetime.Singleton);
+        Container
+            .RegisterSingleton<AppStarterDbContext>()
+
+            .RegisterSingleton<IRepository<Data.AppInfo>, EFRepository<Data.AppInfo, AppStarterDbContext>>()
+
+            .RegisterSingleton<IAppStarterUnitOfWork, AppStarterUnitOfWork>();
     }
 }
