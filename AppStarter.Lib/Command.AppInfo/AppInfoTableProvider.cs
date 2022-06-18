@@ -40,31 +40,10 @@ public class AppInfoTableProvider
 	protected override void SetColumnsSize(List<AppInfo> models)
 	{
 		SetColumn(nameof(AppInfo.Id), GetIdsLength(models));
-		SetColumn(nameof(AppInfo.Name), GetNameLength(models));
-		SetColumn(nameof(AppInfo.Description), GetDescriptionLength(models));
+		SetColumn(nameof(AppInfo.Name), GetNamesLength(models));
+		SetColumn(nameof(AppInfo.Description), GetDescsLength(models));
 		SetColumn(nameof(AppInfo.Path), GetPathLength(models));
 	}
-
-	private static List<int> GetIdsLength(List<AppInfo> models)
-    {
-        var rows = models.Select(e => e.Id.ToString().Length).ToList();
-		rows.Insert(0, nameof(AppInfo.Id).Length);
-		return rows;
-    }
-
-	private static List<int> GetNameLength(List<AppInfo> models)
-    {
-        var rows = models.Select(e => e.Name.Length).ToList();
-		rows.Insert(0, nameof(AppInfo.Name).Length);
-		return rows;
-    }
-
-	private static List<int> GetDescriptionLength(List<AppInfo> models)
-    {
-        var rows = models.Select(e => e.Description.Length).ToList();
-		rows.Insert(0, nameof(AppInfo.Description).Length);
-		return rows;
-    }
 
 	private static List<int> GetPathLength(List<AppInfo> models)
     {
